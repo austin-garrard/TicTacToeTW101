@@ -17,12 +17,13 @@ public class Game {
 
     public void run() {
         gameDisplay.drawGrid();
-        gameDisplay.promptPlayerOne();
+
+        gameDisplay.prompt(Player.One);
         int location = gameInput.readDesiredLocation();
         movePlayerOne(location);
         gameDisplay.drawGrid();
 
-        gameDisplay.promptPlayerTwo();
+        gameDisplay.prompt(Player.Two);
         location = gameInput.readDesiredLocation();
         movePlayerTwo(location);
         gameDisplay.drawGrid();

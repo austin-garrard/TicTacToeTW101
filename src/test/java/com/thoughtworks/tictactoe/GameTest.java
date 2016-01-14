@@ -40,13 +40,13 @@ public class GameTest {
     @Test
     public void shouldPromptPlayerOne() {
         game.run();
-        verify(gameDisplay).promptPlayerOne();
+        verify(gameDisplay).prompt(Player.One);
     }
 
     @Test
     public void shouldPromptPlayerTwo() {
         game.run();
-        verify(gameDisplay).promptPlayerTwo();
+        verify(gameDisplay).prompt(Player.Two);
     }
 
     @Test
@@ -60,5 +60,13 @@ public class GameTest {
         game.movePlayerTwo(6);
         verify(moves).put(6, 2);
     }
+
+//    @Test
+//    public void shouldDisplayMessageWhenPlayerMovesIntoOccupiedLocation() {
+//        moves.put(1, 1);
+//        moves.put(1, 1);
+//
+//        verify(gameDisplay).printLocationErrorMessage();
+//    }
 
 }

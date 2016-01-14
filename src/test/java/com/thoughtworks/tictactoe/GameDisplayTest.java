@@ -29,14 +29,14 @@ public class GameDisplayTest {
 
     @Test
     public void shouldPromptPlayerOneForMove() {
-        gameDisplay.promptPlayerOne();
+        gameDisplay.prompt(Player.One);
         verify(printStream).println(contains("Player 1, enter a move: "));
 
     }
 
     @Test
     public void shouldPromptPlayerTwoForMove() {
-        gameDisplay.promptPlayerTwo();
+        gameDisplay.prompt(Player.Two);
         verify(printStream).println(contains("Player 2, enter a move: "));
 
     }
