@@ -1,16 +1,13 @@
 package com.thoughtworks.tictactoe;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.nio.Buffer;
-import java.util.Collection;
+import java.util.Map;
 
 public class Game {
     private GameDisplay gameDisplay;
     private GameInput gameInput;
-    private Collection<Integer> moves;
+    private Map<Integer, Integer> moves;
 
-    public Game(GameDisplay gameDisplay, GameInput gameInput, Collection<Integer> moves) {
+    public Game(GameDisplay gameDisplay, GameInput gameInput, Map<Integer, Integer> moves) {
         this.gameDisplay = gameDisplay;
         this.gameInput = gameInput;
         this.moves = moves;
@@ -18,19 +15,25 @@ public class Game {
 
 
 
-
-
-
-
     public void run() {
         gameDisplay.drawGrid();
-        gameDisplay.promptPlayer();
+        gameDisplay.promptPlayerOne();
         int location = gameInput.readDesiredLocation();
-        move(location);
+        movePlayerOne(location);
         gameDisplay.drawGrid();
+
+        gameDisplay.promptPlayerTwo();
+        location = gameInput.readDesiredLocation();
+        movePlayerTwo(location);
+        gameDisplay.drawGrid();
+
     }
 
-    public void move(int location) {
-        moves.add(location);
+    public void movePlayerOne(int location) {
+        moves.put(location, 1);
+    }
+
+    public void movePlayerTwo(int location) {
+        moves.put(location, 2);
     }
 }

@@ -5,10 +5,12 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Collection<Integer> moves = new ArrayList<>();
+        Map<Integer, Integer> moves = new HashMap<>();
         PrintStream printStream = System.out;
         GameDisplay gameDisplay = new GameDisplay(printStream, moves);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));

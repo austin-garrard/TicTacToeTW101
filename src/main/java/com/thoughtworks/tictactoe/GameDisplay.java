@@ -2,19 +2,16 @@ package com.thoughtworks.tictactoe;
 
 import java.io.PrintStream;
 import java.util.Collection;
+import java.util.Map;
 
 public class GameDisplay {
     private PrintStream printStream;
-    private Collection<Integer> moves;
+    private Map<Integer, Integer> moves;
 
-    public GameDisplay(PrintStream printStream, Collection<Integer> moves) {
+    public GameDisplay(PrintStream printStream, Map<Integer, Integer> moves) {
 
         this.printStream = printStream;
         this.moves = moves;
-    }
-
-    public void promptPlayer() {
-        printStream.println("Player 1, enter a move: ");
     }
 
     public void drawGrid() {
@@ -41,11 +38,23 @@ public class GameDisplay {
 
     private String drawCell(int cell) {
         String output = "";
-        if(moves.contains(cell)) {
-            output += " X ";
+        if(moves.containsKey(cell)) {
+            output += " "  + (moves.get(cell) == 1? "X":"O") + " ";
         } else {
             output += "   ";
         }
         return output;
+    }
+
+    public void promptPlayerOne() {
+        printStream.println("Player 1, enter a move: ");
+    }
+
+    public void promptPlayerTwo() {
+        printStream.println("Player 2, enter a move: ");
+    }
+
+    public void promptPlayer() {
+        printStream.println("Player 1, enter a move: ");
     }
 }

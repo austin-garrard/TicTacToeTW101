@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Collection;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -19,33 +20,45 @@ public class GameTest {
     private Game game;
     private BufferedReader bufferedReader;
     private GameDisplay gameDisplay;
-    private Collection<Integer> moves;
+    private Map<Integer,Integer> moves;
     private GameInput gameInput;
 
     @Before
     public void setup() {
         gameDisplay = mock(GameDisplay.class);
         gameInput = mock(GameInput.class);
-        moves = mock(Collection.class);
-        game = new Game(gameDisplay, null, moves);
+        moves = mock(Map.class);
+        game = new Game(gameDisplay, gameInput, moves);
     }
+//
+//    @Test
+//    public void shouldDisplayInitialBoard() {
+//        game.run();
+//        verify(gameDisplay).drawGrid();
+//    }
 
     @Test
-    public void shouldDisplayInitialBoard() {
+    public void shouldPromptPlayerOne() {
         game.run();
-        verify(gameDisplay).drawGrid();
+        verify(gameDisplay).promptPlayerOne();
     }
 
     @Test
-    public void shouldPromptPlayer() {
+    public void shouldPromptPlayerTwo() {
         game.run();
-        verify(gameDisplay).promptPlayer();
+        verify(gameDisplay).promptPlayerTwo();
     }
 
     @Test
-    public void shouldMakeMoveWhenMoveIsInTheFirstRow() {
-        game.move(3);
-        verify(moves).add(3);
+    public void shouldMovePlayerOne() {
+        game.movePlayerOne(3);
+        verify(moves).put(3, 1);
+    }
+
+    @Test
+    public void shouldMovePlayerTwo() {
+        game.movePlayerTwo(6);
+        verify(moves).put(6, 2);
     }
 
 }

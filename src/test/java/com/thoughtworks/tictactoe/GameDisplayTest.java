@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
@@ -16,19 +18,26 @@ public class GameDisplayTest {
 
     private PrintStream printStream;
     private GameDisplay gameDisplay;
-    private Collection<Integer> moves;
+    private Map<Integer,Integer> moves;
 
     @Before
     public void setup() {
         printStream = mock(PrintStream.class);
-        moves = new ArrayList<>();
+        moves = new HashMap<>();
         gameDisplay = new GameDisplay(printStream, moves);
     }
 
     @Test
-    public void shouldPromptPlayerForMove() {
-        gameDisplay.promptPlayer();
-        verify(printStream).println(contains("enter a move: "));
+    public void shouldPromptPlayerOneForMove() {
+        gameDisplay.promptPlayerOne();
+        verify(printStream).println(contains("Player 1, enter a move: "));
+
+    }
+
+    @Test
+    public void shouldPromptPlayerTwoForMove() {
+        gameDisplay.promptPlayerTwo();
+        verify(printStream).println(contains("Player 2, enter a move: "));
 
     }
 
@@ -44,7 +53,7 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawGridWhenMoveIsOne() {
-        moves.add(1);
+        moves.put(1, 1);
 
         gameDisplay.drawGrid();
 
@@ -58,11 +67,39 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawGridWhenMoveIsTwo() {
-        moves.add(2);
+        moves.put(2, 1);
 
         gameDisplay.drawGrid();
 
         verify(printStream).println("   | X |   \n" +
+                "-----------\n" +
+                "   |   |   \n" +
+                "-----------\n" +
+                "   |   |   ");
+
+    }
+
+    @Test
+    public void shouldDrawXWhenPlayerOneMove() {
+        moves.put(1, 1);
+
+        gameDisplay.drawGrid();
+
+        verify(printStream).println(" X |   |   \n" +
+                                    "-----------\n" +
+                                    "   |   |   \n" +
+                                    "-----------\n" +
+                                    "   |   |   ");
+
+    }
+
+    @Test
+    public void shouldDrawOWhenPlayerTwoMove() {
+        moves.put(1, 2);
+
+        gameDisplay.drawGrid();
+
+        verify(printStream).println(" O |   |   \n" +
                 "-----------\n" +
                 "   |   |   \n" +
                 "-----------\n" +
