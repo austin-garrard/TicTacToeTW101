@@ -43,6 +43,6 @@ public class Game {
     }
 
     public void move(int location) {
-        moves.add(3);
+        moves.add(location);
     }
 }
