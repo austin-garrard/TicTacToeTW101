@@ -20,7 +20,7 @@ public class GameTest {
     private Game game;
     private BufferedReader bufferedReader;
     private GameDisplay gameDisplay;
-    private Map<Integer,Integer> moves;
+    private Map<Integer,Player> moves;
     private GameInput gameInput;
 
     @Before
@@ -51,14 +51,14 @@ public class GameTest {
 
     @Test
     public void shouldMovePlayerOne() {
-        game.movePlayerOne(3);
-        verify(moves).put(3, 1);
+        game.move(Player.One, 3);
+        verify(moves).put(3, Player.One);
     }
 
     @Test
     public void shouldMovePlayerTwo() {
-        game.movePlayerTwo(6);
-        verify(moves).put(6, 2);
+        game.move(Player.Two, 4);
+        verify(moves).put(4, Player.Two);
     }
 
 //    @Test

@@ -18,7 +18,7 @@ public class GameDisplayTest {
 
     private PrintStream printStream;
     private GameDisplay gameDisplay;
-    private Map<Integer,Integer> moves;
+    private Map<Integer,Player> moves;
 
     @Before
     public void setup() {
@@ -53,7 +53,7 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawGridWhenMoveIsOne() {
-        moves.put(1, 1);
+        moves.put(1, Player.One);
 
         gameDisplay.drawGrid();
 
@@ -67,7 +67,7 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawGridWhenMoveIsTwo() {
-        moves.put(2, 1);
+        moves.put(2, Player.One);
 
         gameDisplay.drawGrid();
 
@@ -81,7 +81,7 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawXWhenPlayerOneMove() {
-        moves.put(1, 1);
+        moves.put(1, Player.One);
 
         gameDisplay.drawGrid();
 
@@ -95,7 +95,7 @@ public class GameDisplayTest {
 
     @Test
     public void shouldDrawOWhenPlayerTwoMove() {
-        moves.put(1, 2);
+        moves.put(1, Player.Two);
 
         gameDisplay.drawGrid();
 

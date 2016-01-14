@@ -5,9 +5,9 @@ import java.util.Map;
 
 public class GameDisplay {
     private PrintStream printStream;
-    private Map<Integer, Integer> moves;
+    private Map<Integer, Player> moves;
 
-    public GameDisplay(PrintStream printStream, Map<Integer, Integer> moves) {
+    public GameDisplay(PrintStream printStream, Map<Integer, Player> moves) {
 
         this.printStream = printStream;
         this.moves = moves;
@@ -53,7 +53,7 @@ public class GameDisplay {
 
     private String drawPlayer(int cell) {
         String output = " ";
-        output += moves.get(cell) == 1
+        output += moves.get(cell) == Player.One
                 ? "X"
                 : "O";
         output += " ";
