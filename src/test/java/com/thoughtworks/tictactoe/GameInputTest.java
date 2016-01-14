@@ -1,3 +1,5 @@
+package com.thoughtworks.tictactoe;
+
 import com.thoughtworks.tictactoe.GameInput;
 import org.junit.Before;
 import org.junit.Test;

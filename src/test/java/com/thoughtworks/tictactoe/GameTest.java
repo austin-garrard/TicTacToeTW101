@@ -60,14 +60,4 @@ public class GameTest {
         verify(gameDisplay).drawErrorMessage();
     }
 
-
-
-//    @Test
-//    public void shouldDisplayMessageWhenPlayerMovesIntoOccupiedLocation() {
-//        moves.put(1, 1);
-//        moves.put(1, 1);
-//
-//        verify(gameDisplay).printLocationErrorMessage();
-//    }
-
 }
