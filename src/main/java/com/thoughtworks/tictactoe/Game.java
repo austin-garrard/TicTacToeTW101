@@ -35,4 +35,11 @@ public class Game {
         }
     }
 
+    public void move(int location) {
+        printStream.println("   |   | X \n" +
+                            "-----------\n" +
+                            "   |   |   \n" +
+                            "-----------\n" +
+                            "   |   |   ");
+    }
 }

@@ -12,6 +12,6 @@ public class Main {
         game.draw();
         game.prompt();
         int playerOneMove = game.readDesiredLocation();
-
+        game.move(playerOneMove);
     }
 }
