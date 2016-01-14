@@ -3,23 +3,14 @@ package com.thoughtworks.tictactoe;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.Collection;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class GameTest {
 
     private Game game;
-    private BufferedReader bufferedReader;
     private GameDisplay gameDisplay;
     private Map<Integer,Player> moves;
     private GameInput gameInput;
@@ -35,29 +26,48 @@ public class GameTest {
     @Test
     public void shouldPromptPlayerDuringTurn() {
         game.turn(Player.One);
+
         verify(gameDisplay).prompt(Player.One);
     }
 
     @Test
     public void shouldReaderInputDuringTurn() {
         game.turn(Player.One);
+
         verify(gameInput).readDesiredLocation();
     }
 
     @Test
     public void shouldMovePlayerDuringTurnWhenLocationIsFree() {
         when(gameInput.readDesiredLocation()).thenReturn(3);
+
         game.turn(Player.Two);
+
         verify(moves).put(3, Player.Two);
     }
 
     @Test
     public void shouldDrawErrorMessageDuringTurnWhenLocationIsTaken() {
-        when(moves.containsKey(anyInt())).thenReturn(true);
+        when(moves.containsKey(anyInt())).thenReturn(true)
+                                         .thenReturn(false);
 
         game.turn(Player.One);
 
         verify(gameDisplay).drawErrorMessage();
     }
+
+
+    @Test
+    public void shouldGivePlayerAnotherTurnWhenLocationAlreadyTaken() {
+        when(gameInput.readDesiredLocation()).thenReturn(3);
+        when(moves.containsKey(anyInt())).thenReturn(true)
+                                         .thenReturn(false);
+
+        game.turn(Player.Two);
+
+        verify(moves).put(3, Player.Two);
+    }
+
+
 
 }

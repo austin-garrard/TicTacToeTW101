@@ -14,18 +14,23 @@ public class Game {
     }
 
     public void turn(Player player) {
-        gameDisplay.prompt(player);
-        int location = gameInput.readDesiredLocation();
-        move(player, location);
+        int location;
+        do {
+            gameDisplay.prompt(player);
+            location = gameInput.readDesiredLocation();
+        } while(!move(player, location));
+
         gameDisplay.drawGrid();
     }
 
-    private void move(Player player, int location) {
+    private boolean move(Player player, int location) {
         if(moves.containsKey(location)) {
             gameDisplay.drawErrorMessage();
+            return false;
         }
         else {
             moves.put(location, player);
+            return true;
         }
     }
 
