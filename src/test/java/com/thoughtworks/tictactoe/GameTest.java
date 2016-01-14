@@ -26,22 +26,6 @@ public class GameTest {
         game = new Game(printStream, bufferedReader);
     }
 
-    @Test
-    public void shouldDrawTheBoard() {
-        game.draw();
-        verify(printStream).println("   |   |   \n" +
-                                    "-----------\n" +
-                                    "   |   |   \n" +
-                                    "-----------\n" +
-                                    "   |   |   ");
-    }
-
-
-    @Test
-    public void shouldPromptPlayerOneForMove() {
-        game.prompt();
-        verify(printStream).println("Player 1, enter a move: ");
-    }
 
     @Test
     public void shouldReadDesiredLocation() throws IOException{
@@ -52,7 +36,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldMarkFirstMoveWithX() {
+    public void shouldMakeMoveWhenMoveIsInTheFirstRow() {
         game.move(3);
         verify(printStream).println("   |   | X \n" +
                                     "-----------\n" +

@@ -9,8 +9,8 @@ public class Main {
         PrintStream printStream = System.out;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Game game = new Game(printStream, bufferedReader);
-        game.draw();
-        game.prompt();
+        //game.draw();
+        //game.prompt();
         int playerOneMove = game.readDesiredLocation();
         game.move(playerOneMove);
     }

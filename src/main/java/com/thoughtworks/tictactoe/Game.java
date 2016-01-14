@@ -14,17 +14,6 @@ public class Game {
         this.bufferedReader = bufferedReader;
     }
 
-    public void draw() {
-        printStream.println("   |   |   \n" +
-                            "-----------\n" +
-                            "   |   |   \n" +
-                            "-----------\n" +
-                            "   |   |   ");
-    }
-
-    public void prompt() {
-        printStream.println("Player 1, enter a move: ");
-    }
 
     public int readDesiredLocation() {
         try {
