@@ -51,6 +51,14 @@ public class GameTest {
 
     }
 
-
+    @Test
+    public void shouldMarkFirstMoveWithX() {
+        game.move(3);
+        verify(printStream).println("   |   | X \n" +
+                                    "-----------\n" +
+                                    "   |   |   \n" +
+                                    "-----------\n" +
+                                    "   |   |   ");
+    }
 
 }
