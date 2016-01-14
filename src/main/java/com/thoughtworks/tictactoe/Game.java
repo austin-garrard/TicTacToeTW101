@@ -17,4 +17,12 @@ public class Game {
                             "---------\n" +
                             "   |   | ");
     }
+
+    public void prompt() {
+        printStream.println("Player 1, enter a move: ");
+    }
+
+    public int readDesiredLocation() {
+        return 0;
+    }
 }
