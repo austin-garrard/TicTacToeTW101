@@ -53,9 +53,7 @@ public class GameDisplay {
 
     private String drawPlayer(int cell) {
         String output = " ";
-        output += moves.get(cell) == Player.One
-                ? "X"
-                : "O";
+        output += moves.get(cell).draw();
         output += " ";
         return output;
     }
