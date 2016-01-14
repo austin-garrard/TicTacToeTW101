@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -16,14 +17,22 @@ import static org.mockito.Mockito.when;
 public class GameTest {
 
     private Game game;
-    private PrintStream printStream;
     private BufferedReader bufferedReader;
+    private GameDisplay gameDisplay;
+    private Collection<Integer> moves;
 
     @Before
     public void setup() {
-        printStream = mock(PrintStream.class);
+        gameDisplay = mock(GameDisplay.class);
         bufferedReader = mock(BufferedReader.class);
-        game = new Game(printStream, bufferedReader);
+        moves = mock(Collection.class);
+        game = new Game(gameDisplay, bufferedReader, moves);
+    }
+
+    @Test
+    public void shouldDisplayInitialBoard() {
+        game.run();
+        verify(gameDisplay).drawGrid();
     }
 
 
@@ -32,17 +41,12 @@ public class GameTest {
         when(bufferedReader.readLine()).thenReturn("1");
         int desiredLocation = game.readDesiredLocation();
         assertThat(desiredLocation, is(1));
-
     }
 
     @Test
     public void shouldMakeMoveWhenMoveIsInTheFirstRow() {
         game.move(3);
-        verify(printStream).println("   |   | X \n" +
-                                    "-----------\n" +
-                                    "   |   |   \n" +
-                                    "-----------\n" +
-                                    "   |   |   ");
+        verify(moves).add(3);
     }
 
 }
