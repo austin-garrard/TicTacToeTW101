@@ -14,6 +14,12 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         GameInput gameInput = new GameInput(bufferedReader);
         Game game = new Game(gameDisplay, gameInput, moves);
-        game.run();
+
+
+        gameDisplay.drawGrid();
+
+        game.turn(Player.One);
+
+        game.turn(Player.Two);
     }
 }

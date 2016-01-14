@@ -13,26 +13,11 @@ public class Game {
         this.moves = moves;
     }
 
-
-
-    public void run() {
-        gameDisplay.drawGrid();
-
-        turn(Player.One);
-
-        turn(Player.Two);
-
-    }
-
-    private void turn(Player player) {
+    public void turn(Player player) {
         gameDisplay.prompt(player);
         int location = gameInput.readDesiredLocation();
-        move(player, location);
-        gameDisplay.drawGrid();
-    }
-
-    public void move(Player player, int location) {
         moves.put(location, player);
+        gameDisplay.drawGrid();
     }
 
 }

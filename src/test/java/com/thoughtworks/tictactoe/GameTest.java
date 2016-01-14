@@ -30,36 +30,26 @@ public class GameTest {
         moves = mock(Map.class);
         game = new Game(gameDisplay, gameInput, moves);
     }
-//
-//    @Test
-//    public void shouldDisplayInitialBoard() {
-//        game.run();
-//        verify(gameDisplay).drawGrid();
-//    }
 
     @Test
-    public void shouldPromptPlayerOne() {
-        game.run();
+    public void shouldPromptPlayerDuringTurn() {
+        game.turn(Player.One);
         verify(gameDisplay).prompt(Player.One);
     }
 
     @Test
-    public void shouldPromptPlayerTwo() {
-        game.run();
-        verify(gameDisplay).prompt(Player.Two);
+    public void shouldReaderInputDuringTurn() {
+        game.turn(Player.One);
+        verify(gameInput).readDesiredLocation();
     }
 
     @Test
-    public void shouldMovePlayerOne() {
-        game.move(Player.One, 3);
-        verify(moves).put(3, Player.One);
+    public void shouldMovePlayerDuringTurn() {
+        when(gameInput.readDesiredLocation()).thenReturn(3);
+        game.turn(Player.Two);
+        verify(moves).put(3, Player.Two);
     }
 
-    @Test
-    public void shouldMovePlayerTwo() {
-        game.move(Player.Two, 4);
-        verify(moves).put(4, Player.Two);
-    }
 
 //    @Test
 //    public void shouldDisplayMessageWhenPlayerMovesIntoOccupiedLocation() {
