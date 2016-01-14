@@ -108,6 +108,12 @@ public class GameDisplayTest {
     }
 
 
+    @Test
+    public void shouldDrawErrorMessage() {
+        gameDisplay.drawErrorMessage();
+
+        verify(printStream).println("Location already taken.");
+    }
 
 
 

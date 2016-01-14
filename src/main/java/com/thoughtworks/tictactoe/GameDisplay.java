@@ -63,4 +63,8 @@ public class GameDisplay {
     public void prompt(Player player) {
         printStream.println(player.getName() + ", enter a move: ");
     }
+
+    public void drawErrorMessage() {
+        printStream.println("Location already taken.");
+    }
 }

@@ -16,8 +16,17 @@ public class Game {
     public void turn(Player player) {
         gameDisplay.prompt(player);
         int location = gameInput.readDesiredLocation();
-        moves.put(location, player);
+        move(player, location);
         gameDisplay.drawGrid();
+    }
+
+    private void move(Player player, int location) {
+        if(moves.containsKey(location)) {
+            gameDisplay.drawErrorMessage();
+        }
+        else {
+            moves.put(location, player);
+        }
     }
 
 }

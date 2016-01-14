@@ -11,6 +11,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -44,11 +45,21 @@ public class GameTest {
     }
 
     @Test
-    public void shouldMovePlayerDuringTurn() {
+    public void shouldMovePlayerDuringTurnWhenLocationIsFree() {
         when(gameInput.readDesiredLocation()).thenReturn(3);
         game.turn(Player.Two);
         verify(moves).put(3, Player.Two);
     }
+
+    @Test
+    public void shouldDrawErrorMessageDuringTurnWhenLocationIsTaken() {
+        when(moves.containsKey(anyInt())).thenReturn(true);
+
+        game.turn(Player.One);
+
+        verify(gameDisplay).drawErrorMessage();
+    }
+
 
 
 //    @Test
