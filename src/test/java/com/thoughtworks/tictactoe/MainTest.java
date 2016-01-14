@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class MainTest {
 
     @Test
-    public void shouldBeADummyTest() {
+    public void shouldDrawTheBoard() {
 
     }
 
