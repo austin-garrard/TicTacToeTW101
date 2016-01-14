@@ -15,11 +15,7 @@ public class Main {
         GameInput gameInput = new GameInput(bufferedReader);
         Game game = new Game(gameDisplay, gameInput, moves);
 
-
-        gameDisplay.drawGrid();
-
-        game.turn(Player.One);
-
-        game.turn(Player.Two);
+        GameLoop gameLoop = new GameLoop(game, gameDisplay);
+        gameLoop.run();
     }
 }
