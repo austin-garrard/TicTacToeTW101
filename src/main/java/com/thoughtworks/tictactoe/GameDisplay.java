@@ -18,35 +18,34 @@ public class GameDisplay {
     }
 
     public void drawGrid() {
-        if(moves.size() > 0) {
-            String output = "";
-            for(int i = 1; i <= 9; i++) {
-                if(moves.contains(i)) {
-                    output += " X ";
-                } else {
-                    output += "   ";
-                }
-                if(i % 3 == 0) {
-                    if(i < 7) {
-                        output += "\n-----------\n";
-                    }
-                } else {
-                    output += "|";
-                }
+        String output = "";
+        for(int cell = 1; cell <= 9; cell++) {
+            output += drawCell(cell);
+            output += drawHorizontalDivider(cell);
+        }
+        printStream.println(output);
+
+    }
+
+    private String drawHorizontalDivider(int cell) {
+        String output = "";
+        if(cell % 3 == 0) {
+            if(cell < 7) {
+                output += "\n-----------\n";
             }
-            printStream.println(output);
-//            printStream.println(" X |   |   \n" +
-//                                "-----------\n" +
-//                                "   |   |   \n" +
-//                                "-----------\n" +
-//                                "   |   |   ");
+        } else {
+            output += "|";
         }
-        else {
-            printStream.println("   |   |   \n" +
-                    "-----------\n" +
-                    "   |   |   \n" +
-                    "-----------\n" +
-                    "   |   |   ");
+        return output;
+    }
+
+    private String drawCell(int cell) {
+        String output = "";
+        if(moves.contains(cell)) {
+            output += " X ";
+        } else {
+            output += "   ";
         }
+        return output;
     }
 }
