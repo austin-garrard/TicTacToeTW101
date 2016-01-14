@@ -2,42 +2,30 @@ package com.thoughtworks.tictactoe;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.Collection;
 
 public class Game {
     private GameDisplay gameDisplay;
-    private BufferedReader bufferedReader;
+    private GameInput gameInput;
     private Collection<Integer> moves;
 
-    public Game(GameDisplay gameDisplay, BufferedReader bufferedReader, Collection<Integer> moves) {
+    public Game(GameDisplay gameDisplay, GameInput gameInput, Collection<Integer> moves) {
         this.gameDisplay = gameDisplay;
-
-        this.bufferedReader = bufferedReader;
+        this.gameInput = gameInput;
         this.moves = moves;
     }
 
 
-    public int readDesiredLocation() {
-        try {
-            return Integer.parseInt(bufferedReader.readLine());
-        }
-        catch(IOException exception) {
-            return -1;
-        }
-    }
 
-//    public void move(int location) {
-//        printStream.println("   |   | X \n" +
-//                            "-----------\n" +
-//                            "   |   |   \n" +
-//                            "-----------\n" +
-//                            "   |   |   ");
-//    }
+
+
+
 
     public void run() {
         gameDisplay.drawGrid();
         gameDisplay.promptPlayer();
-        int location = readDesiredLocation();
+        int location = gameInput.readDesiredLocation();
         move(location);
         gameDisplay.drawGrid();
     }

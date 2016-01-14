@@ -20,13 +20,14 @@ public class GameTest {
     private BufferedReader bufferedReader;
     private GameDisplay gameDisplay;
     private Collection<Integer> moves;
+    private GameInput gameInput;
 
     @Before
     public void setup() {
         gameDisplay = mock(GameDisplay.class);
-        bufferedReader = mock(BufferedReader.class);
+        gameInput = mock(GameInput.class);
         moves = mock(Collection.class);
-        game = new Game(gameDisplay, bufferedReader, moves);
+        game = new Game(gameDisplay, null, moves);
     }
 
     @Test
@@ -35,12 +36,10 @@ public class GameTest {
         verify(gameDisplay).drawGrid();
     }
 
-
     @Test
-    public void shouldReadDesiredLocation() throws IOException{
-        when(bufferedReader.readLine()).thenReturn("1");
-        int desiredLocation = game.readDesiredLocation();
-        assertThat(desiredLocation, is(1));
+    public void shouldPromptPlayer() {
+        game.run();
+        verify(gameDisplay).promptPlayer();
     }
 
     @Test

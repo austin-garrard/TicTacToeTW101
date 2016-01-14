@@ -12,7 +12,8 @@ public class Main {
         PrintStream printStream = System.out;
         GameDisplay gameDisplay = new GameDisplay(printStream, moves);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Game game = new Game(gameDisplay, bufferedReader, moves);
+        GameInput gameInput = new GameInput(bufferedReader);
+        Game game = new Game(gameDisplay, gameInput, moves);
         game.run();
     }
 }
